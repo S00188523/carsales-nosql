@@ -10,7 +10,7 @@ import { ICar, NewCar } from 'src/app/interfaces/car';
   styleUrls: ['./carlist.component.css']
 })
 export class CarlistComponent implements OnInit {
-  carsData!: ICar[];
+  carsData: ICar | any;
   show!: boolean;
 
   constructor(private _carApiService:CarApiService){}
