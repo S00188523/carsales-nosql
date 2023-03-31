@@ -7,11 +7,14 @@ import { ICar, NewCar } from 'src/app/interfaces/car';
 @Component({
   selector: 'app-carlist',
   templateUrl: './carlist.component.html',
-  styleUrls: ['./carlist.component.css']
+  styleUrls: ['./carlist.component.css'],
+  
 })
 export class CarlistComponent implements OnInit {
   carsData: ICar | any;
   show!: boolean;
+  editCar: any;
+  isEditing: any;
 
   constructor(private _carApiService:CarApiService){}
 
@@ -20,19 +23,26 @@ export class CarlistComponent implements OnInit {
   }
 
   getCars() {
-    this._carApiService.getCarDetails().subscribe(carsData =>
-      { this.carsData = carsData
+    this._carApiService.getCarDetails().subscribe(carsData => {
+      this.carsData = carsData;
     });
   }
 
-  addCar(make:string, model:string, year:string,imageUrl:string):boolean {
+  addCar(make:string, model:string, colour:string, year:string, price:string, mileage:string, imageUrl:string):boolean {
     let addCar:ICar;
-    addCar=new NewCar(make,model,year,imageUrl);
-    this._carApiService.addCarDetails(addCar).subscribe(carsData =>
-      { this.carsData = carsData}
-    );
-
+    addCar=new NewCar(make,model,colour,year,price,mileage,imageUrl);
+    this._carApiService.addCarDetails(addCar).subscribe(carsData => {
+      this.carsData = carsData;
+    });
     return false;
   }
 
+  refreshCars() {
+    this.getCars();
+  }
+
+  onDeleteCar() {
+    this.refreshCars();
+  }
 }
+

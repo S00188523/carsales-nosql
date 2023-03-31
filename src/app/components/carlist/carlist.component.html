@@ -1,5 +1,5 @@
 <div class='container mt-3 mb-3'>
-    <button (click)="show = !show">{{show ? 'Hide' : 'Add a Car'}}</button>
+    <button class="show-hide-button" (click)="show = !show">{{show ? 'Hide' : 'Add a Car'}}</button>
   
     <div *ngIf="show">
       <form>
@@ -8,19 +8,30 @@
   
         <label>Model</label>
         <input type="text" name="model" placeholder="Enter Model" #model>
+
+        <label>Colour</label>
+        <input type="text" name="colour" placeholder="Enter Colour" #colour>
   
         <label>Year</label>
         <input type="text" name="year" placeholder="Enter Year" #year>
+
+        <label>Price</label>
+        <input type="text" name="price" placeholder="Enter Price" #price>
+
+        <label>Mileage</label>
+        <input type="text" name="mileage" placeholder="Enter Mileage" #mileage>
   
         <label>Image</label>
         <input type="text" name="imageURL" placeholder="Enter Link to Image" #imageUrl>
   
         <button class="btn btn-primary" type="submit" (click)="addCar(make.value, 
-                  model.value,year.value,imageUrl.value)">Add Car</button>
+                  model.value,colour.value,year.value,price.value,mileage.value,imageUrl.value)">Add Car</button>
+        
       </form>
     </div>
     </div>
   
     <div class='container'>
-      <app-car *ngFor="let carData of carsData" [carData]="carData"></app-car>
+      <app-car *ngFor="let carData of carsData" [carData]="carData" (carDeleteEvent)="refreshCars()"></app-car>
     </div>
+    
