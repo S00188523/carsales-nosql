@@ -33,6 +33,7 @@ export class CarApiService {
 
   delCarDetails(carId:string):Observable<any> {
     let deleteURL=this._siteURL+"/"+carId;
+    console.log(deleteURL);
     return this._http.delete(deleteURL)
     .pipe(
       tap(data => console.log('del car message/error' + JSON.stringify(data))

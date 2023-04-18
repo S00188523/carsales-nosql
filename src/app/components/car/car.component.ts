@@ -18,6 +18,8 @@ export class CarComponent {
 
   constructor(private _carApiService:CarApiService) {}
 
+  
+
   deleteCar(carId: string) {
   if (confirm('Are you sure you want to delete this car?')) {
     this._carApiService.delCarDetails(carId).subscribe(
